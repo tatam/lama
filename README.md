@@ -38,3 +38,10 @@ or
 
 `make fclean`
 
+
+## Utilisation
+First, you must create a word list with personnal infomations about the target. Then you can use **lama** to mix your given work list:
+
+`lama 1 4 /tmp/list -ncCyh > /tmp/dico`
+
+For more detail, see `man lama`
