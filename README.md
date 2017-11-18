@@ -11,7 +11,11 @@ Keep in mind that the Lama generates a simple password list and not complex, thi
 
 ## Installation
 Note that the make install must be run as **root**, because the binary was copy to **/bin** and configurations file into **/etc/lama**.
+
 `make`
+
 `make install`
+
 or
+
 `make all`
