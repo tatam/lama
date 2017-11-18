@@ -9,7 +9,8 @@ It is therefore important that the words in this list correspond to the target.
 
 Keep in mind that the Lama generates a simple password list and not complex, this goal is to be fast and targeted rather than slow and exostif.
 
-## Installation
+## Compilation
+### Install
 Note that the make install must be run as **root**, because the binary was copy to **/bin** and configurations file into **/etc/lama**.
 
 `make`
@@ -19,3 +20,21 @@ Note that the make install must be run as **root**, because the binary was copy 
 or
 
 `make all`
+
+or
+
+`make re`
+
+### uninstall
+Note that the make uninstall must be run as **root**, because the binary was remove from **/bin** and configurations file from **/etc/lama**.
+
+`make uninstall`
+
+### clean
+
+`make clean`
+
+or
+
+`make fclean`
+
