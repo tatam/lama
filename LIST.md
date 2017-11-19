@@ -61,7 +61,8 @@ She works for the MIT.
 
 The goal here, is to find the password of his company mailbox.
 ### List
-2017
+`# cat alice.lst`
+`2017
 2016
 2015
 2014
@@ -102,4 +103,4 @@ manus
 mail
 e-mail
 email
-mailbox
+mailbox`
