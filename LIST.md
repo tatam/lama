@@ -61,87 +61,47 @@ She works for the MIT.
 
 The goal here, is to find the password of his company mailbox.
 ### List
-`# cat alice.lst`
-`2017
+Ignore the "-":
 
-2016
-
-2015
-
-2014
-
-2013
-
-alice
-
-rivesta
-
-lili
-
-a
-
-r
-
-6
-
-06
-
-may
-
-5
-
-05
-
-1947
-
-47
-
-schenectady
-
-us
-
-nyc
-
-new-york
-
-new
-
-york
-
-united
-
-states
-
-17
-
-trush
-
-36
-
-65508
-
-0964570
-
-bob
-
-1977
-
-77
-
-mit
-
-cambridge
-
-massachusetts
-
-mens
-
-manus
-
-mail
-
-e-mail
-
-email
-
-mailbox`
+- 2017
+- 2016
+- 2015
+- 2014
+- 2013
+- alice
+- rivesta
+- lili
+- a
+- r
+- 6
+- 06
+- may
+- 5
+- 05
+- 1947
+- 47
+- schenectady
+- us
+- nyc
+- new-york
+- new
+- york
+- united
+- states
+- 17
+- trush
+- 36
+- 65508
+- 0964570
+- bob
+- 1977
+- 77
+- mit
+- cambridge
+- massachusetts
+- mens
+- manus
+- mail
+- e-mail
+- email
+- mailbox
