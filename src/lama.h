@@ -30,6 +30,8 @@ struct  t_obj
   char	*options;
   int	*pt_words;
   int	nb_words;
+  int	interval;
+  int	cur_perm;
   int	min;
   int	max;
   int	res;
