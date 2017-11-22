@@ -5,7 +5,7 @@
 ** Login   <tatam@protonmail.com>
 ** 
 ** Started on  Wed Sep 28 08:36:46 2016 Tatam
-** Last update Wed Nov 22 18:38:46 2017 Tatam
+** Last update Wed Nov 22 18:41:03 2017 Tatam
 */
 #include "lama.h"
 
@@ -31,5 +31,5 @@ int	main(int argc, char **argv)
   else
     fprintf(stderr, "Canceling.\n");
   
-  return(0); //d
+  return(0);
 }
