@@ -5,7 +5,7 @@
 ** Login   <tatam@protonmail.com>
 ** 
 ** Started on  Mon Oct  3 09:45:07 2016 Tatam
-** Last update Wed Nov 22 20:46:27 2017 Tatam
+** Last update Thu Nov 23 20:33:30 2017 Tatam
 */
 #include "lama.h"
 
@@ -28,7 +28,7 @@ void	permutation(t_obj *obj)
       c = 0;
       while(obj->pt_function[c] != NULL)
 	{
-	  obj->pt_function[c](obj->interval, obj);
+	  obj->pt_function[c](obj);
 	  c++;
 	}
     }

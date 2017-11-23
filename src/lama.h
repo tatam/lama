@@ -21,7 +21,7 @@
 
 // Function pointer & Struct
 typedef struct t_obj t_obj;
-typedef	void (*t_opt)(int interval, t_obj *obj);
+typedef	void (*t_opt)(t_obj *obj);
 struct  t_obj
 {
   t_opt	*pt_function;
@@ -77,10 +77,10 @@ t_len	*len_init(t_obj *obj);
 FILE    *safe_ropen(char *file_name);
 void	*safe_malloc(int value);
 void    mix(int interval, t_obj *obj);
-void    print_simple(int interval, t_obj *obj);
-void    print_first_maj(int interval, t_obj *obj);
-void    print_all_maj(int interval, t_obj *obj);
-void    print_leet(int interval, t_obj *obj);
+void    print_simple(t_obj *obj);
+void    print_first_maj(t_obj *obj);
+void    print_all_maj(t_obj *obj);
+void    print_leet(t_obj *obj);
 long	count_simple(t_obj *obj);
 long	count_first_maj(t_obj *obj, t_num *num);
 long	count_all_maj(t_obj *obj, t_num *num);
