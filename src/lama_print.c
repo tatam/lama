@@ -14,8 +14,8 @@ void	print_simple(t_obj *obj)
   int	i;
 
   for (i=0; i<obj->interval; i++)
-    printf("%s", obj->words[obj->pt_words[i]]);
-  printf("\n");
+    fprintf(stdout, "%s", obj->words[obj->pt_words[i]]);
+  fprintf(stdout, "\n");
 }
 
 void	print_first_maj(t_obj *obj)
@@ -29,13 +29,13 @@ void	print_first_maj(t_obj *obj)
 	  if (i == 0)
 	    {
 	      obj->words[obj->pt_words[0]][0] -= 32;
-      	      printf("%s", obj->words[obj->pt_words[i]]);
+      	      fprintf(stdout, "%s", obj->words[obj->pt_words[i]]);
 	      obj->words[obj->pt_words[0]][0] += 32;	      
 	    }
 	  else
-	    printf("%s", obj->words[obj->pt_words[i]]);
+	    fprintf(stdout, "%s", obj->words[obj->pt_words[i]]);
 	}
-      printf("\n");
+      fprintf(stdout, "\n");
     }
 }
 
@@ -64,13 +64,13 @@ void	print_all_maj(t_obj *obj)
 	  if (obj->words[obj->pt_words[i]][0] >= 'a' && obj->words[obj->pt_words[i]][0] <= 'z')
 	    {
 	      obj->words[obj->pt_words[i]][0] -= 32;
-      	      printf("%s", obj->words[obj->pt_words[i]]);
+      	      fprintf(stdout, "%s", obj->words[obj->pt_words[i]]);
 	      obj->words[obj->pt_words[i]][0] += 32;
 	    }
 	  else
-	    printf("%s", obj->words[obj->pt_words[i]]);
+	    fprintf(stdout, "%s", obj->words[obj->pt_words[i]]);
 	}
-      printf("\n");
+      fprintf(stdout, "\n");
     }
 }
 
@@ -125,9 +125,9 @@ void	print_leet(t_obj *obj)
 		}
 	      ++c;
 	    }
-	  printf("%s", tmp_word);
+	  fprintf(stdout, "%s", tmp_word);
 	  free(tmp_word);
 	}
-      printf("\n");
+      fprintf(stdout, "\n");
     }
 }
