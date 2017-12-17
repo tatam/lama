@@ -5,7 +5,7 @@
 ** Login   <tatam@protonmail.com>
 ** 
 ** Started on  Wed Sep 28 08:36:46 2016 Tatam
-** Last update Wed Nov 22 18:41:03 2017 Tatam
+** Last update Sun Dec 17 13:23:47 2017 Tatam
 */
 #include "lama.h"
 
@@ -15,7 +15,7 @@ int	main(int argc, char **argv)
   int	i;
 
   obj = check_arg(argc, argv);
-  obj->words = get_words(argv[3], obj);
+  obj->list = get_words_list(argv[3], obj);
   if (calcul_word(argv[0], obj) == 0)
     {
       fprintf(stderr, "Generation... ");
@@ -23,9 +23,10 @@ int	main(int argc, char **argv)
 	mix(i, obj);
       free(obj->pt_function);
       free(obj->leet);
-      free(obj->words);
+      free(obj->list);
       free(obj->options);
       free(obj);
+      fflush(stdout);
       fprintf(stderr, "Done\n");
     }
   else

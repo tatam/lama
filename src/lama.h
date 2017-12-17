@@ -5,7 +5,7 @@
 ** Login   <tatam@protonmail.com>
 ** 
 ** Started on  Wed Sep 28 08:47:14 2016 Tatam
-** Last update Sat Nov 11 17:34:54 2017 Tatam
+** Last update Sun Dec 17 13:20:57 2017 Tatam
 */
 // Includes
 #include <stdlib.h>
@@ -20,15 +20,30 @@
 #define NUME_FILE "/etc/lama/numeric.lst"
 
 // Function pointer & Struct
+typedef struct t_wd t_wd;
+struct	t_wd
+{
+  t_wd	*next;
+  char	*simple;
+  char	*first_maj;
+  char	*leet;
+  int	first_maj_status;
+  int	leet_status;
+};
+typedef struct t_lst t_lst;
+struct	t_lst
+{
+  t_wd	*first;
+};
 typedef struct t_obj t_obj;
 typedef	void (*t_opt)(t_obj *obj);
 struct  t_obj
 {
   t_opt	*pt_function;
+  t_lst	*list;
+  t_wd	**pt_words;
   char	**leet;
-  char	**words;
   char	*options;
-  int	*pt_words;
   int	nb_words;
   int	interval;
   int	cur_perm;
@@ -68,12 +83,12 @@ struct	t_len
 };
 
 // Prototypes
-char	**get_words(char *file, t_obj *obj);
 char	*human_nb_convert(long nb);
 char	*human_len_convert(long nb);
 t_obj   *check_arg(int argc, char **argv);
 t_num	*count_init(t_obj *obj);
 t_len	*len_init(t_obj *obj);
+t_lst	*get_words_list(char *file_name, t_obj *obj);
 FILE    *safe_ropen(char *file_name);
 void	*safe_malloc(int value);
 void    mix(int interval, t_obj *obj);
@@ -92,3 +107,5 @@ long	len_all_maj(t_obj *obj, t_len *len);
 int	calcul_word(char *soft, t_obj *obj);
 int	len_words(t_obj *obj);
 int	count_words(FILE *file);
+int	alter_first_maj(char *alter, char *simple);
+int	alter_leet(char *alter, char *simple, t_obj *obj);

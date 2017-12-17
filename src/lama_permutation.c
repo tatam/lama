@@ -5,13 +5,13 @@
 ** Login   <tatam@protonmail.com>
 ** 
 ** Started on  Mon Oct  3 09:45:07 2016 Tatam
-** Last update Thu Nov 23 20:33:30 2017 Tatam
+** Last update Sun Dec 17 10:14:26 2017 Tatam
 */
 #include "lama.h"
 
-void	swap(int *pt_words1, int *pt_words2)
+void	swap(t_wd *pt_words1, t_wd *pt_words2)
 {
-  int	tmp;
+  t_wd	tmp;
 
   tmp = *pt_words1;
   *pt_words1 = *pt_words2;
@@ -36,44 +36,53 @@ void	permutation(t_obj *obj)
     {
       for(i=obj->cur_perm; i<obj->interval; ++i)
 	{
-	  swap(&obj->pt_words[obj->cur_perm], &obj->pt_words[i]);
+	  swap(obj->pt_words[obj->cur_perm], obj->pt_words[i]);
 	  obj->cur_perm++;
 	  permutation(obj);
 	  obj->cur_perm--;
-	  swap(&obj->pt_words[obj->cur_perm], &obj->pt_words[i]);
+	  swap(obj->pt_words[obj->cur_perm], obj->pt_words[i]);
 	}
     }
 }
 
-void	forfor(int value, int curr_for, t_obj *obj)
+void	rwhile(int curr_while, t_obj *obj)
 {
-  int	i;
+  int	bool;
 
-  obj->pt_words[curr_for] = value;
-  for (i=value; i<=(obj->nb_words - (obj->interval - curr_for)); i++)
+  bool = 0;
+  while (obj->pt_words[curr_while]->next != NULL && bool == 0)
     {
-      if (curr_for != obj->interval-1)
+      if (curr_while != obj->interval-1)
 	{
-	  value++;
-	  forfor(value, curr_for+1, obj);
-	  obj->pt_words[curr_for] = value;
+	  obj->pt_words[curr_while+1] = obj->pt_words[curr_while]->next;
+	  rwhile(curr_while+1, obj);
+	  if (obj->pt_words[curr_while]->next == obj->pt_words[curr_while+1])
+	    bool = 1;
+	  else
+	    obj->pt_words[curr_while] = obj->pt_words[curr_while]->next;
 	}
       else
 	{
-	  obj->pt_words[curr_for] = i;
 	  obj->cur_perm = 0;
 	  permutation(obj);
+	  obj->pt_words[curr_while] = obj->pt_words[curr_while]->next;
 	}
+    }
+  if (bool == 0)
+    {
+      obj->cur_perm = 0;
+      permutation(obj);
     }
 }
 
 void	mix(int interval, t_obj *obj)
 {
-  int	curr_for;
+  int	curr_while;
 
-  curr_for = 0;
-  obj->pt_words = safe_malloc(interval * sizeof(int*) + 1);
+  curr_while = 0;
+  obj->pt_words = safe_malloc(interval * sizeof(t_wd*) + 1);
+  obj->pt_words[0] = obj->list->first;
   obj->interval = interval;
-  forfor(0, curr_for, obj);
+  rwhile(curr_while, obj);
   free(obj->pt_words);
 }

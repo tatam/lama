@@ -19,7 +19,8 @@ SRC =	src/main.c \
 	src/lama_calculator.c \
 	src/lama_count.c \
 	src/lama_len.c \
-	src/lama_convert.c
+	src/lama_convert.c \
+	src/lama_alter.c
 
 BIN_D	= /usr/bin
 MAN_D	= /usr/share/man/man1

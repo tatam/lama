@@ -5,7 +5,7 @@
 ** Login   <tatam@protonmail.com>
 ** 
 ** Started on  Sat Nov 11 21:19:21 2017 Tatam
-** Last update Sat Nov 18 11:58:35 2017 Tatam
+** Last update Sun Dec 17 11:41:11 2017 Tatam
 */
 #include "lama.h"
 
@@ -21,9 +21,7 @@ long	count_simple(t_obj *obj)
     {
       inter = 1;
       for(j=0; j<=i; j++)
-	{
 	  inter *= (obj->nb_words - j);
-	}
       total += inter;
     }
 
@@ -32,21 +30,22 @@ long	count_simple(t_obj *obj)
 
 long	count_first_maj(t_obj *obj, t_num *num)
 {
+  t_wd	*word;
   float	percent;
   float	inter;
   float	reste;
   long	total;
   int	maj;
-  int	i;
 
-  i = 0;
   maj = 0;
-  while (obj->words[i])
+  word = safe_malloc(sizeof(t_wd*) + 1);
+  word = obj->list->first;
+  while (word->next != NULL)
     {
-      if (obj->words[i][0] >= 'a' && obj->words[i][0] <= 'z')
-	++maj;
-      ++i;
+      maj += word->first_maj_status;
+      word = word->next;
     }
+  maj += word->first_maj_status;  
   percent = (float)maj * 100.0 / (float)obj->nb_words;
   inter = num->nb_simple * percent / 100;
   total = inter;
@@ -59,6 +58,7 @@ long	count_first_maj(t_obj *obj, t_num *num)
 
 long	count_all_maj(t_obj *obj, t_num *num)
 {
+  t_wd	*word;
   long	perte;
   long	inter;
   long	total;
@@ -66,14 +66,17 @@ long	count_all_maj(t_obj *obj, t_num *num)
   int	i;
   int	j;
   
-  i = 0;
   no_maj = 0;  
-  while (obj->words[i])
+  word = safe_malloc(sizeof(t_wd*) + 1);
+  word = obj->list->first;
+  while (word->next != NULL)
     {
-      if (obj->words[i][0] <= 'a' || obj->words[i][0] >= 'z')
+      if (word->first_maj_status == 0)
 	++no_maj;
-      ++i;
+      word = word->next;
     }
+  if (word->first_maj_status == 0)
+    ++no_maj;
   perte = 0;
   for(i=obj->min-1; i<obj->max; i++)
     {
@@ -89,45 +92,24 @@ long	count_all_maj(t_obj *obj, t_num *num)
 
 long	count_leet(t_obj *obj, t_num *num)
 {
+  t_wd	*word;
   long	perte;
   long	inter;
   long	total;
   int	no_leet;
   int	leet;
-  int	bool;
-  int	c;
   int	i;
   int	j;
-  int	l;
 
-  i = 0;
-  bool = 1;
   leet = 0;
-  while (obj->words[i])
+  word = safe_malloc(sizeof(t_wd*) + 1);
+  word = obj->list->first;
+  while (word->next != NULL)
     {
-      c = 0;
-      while (obj->words[i][c])
-	{
-	  l = 0;
-	  while (obj->leet[l])
-	    {
-	      if (obj->words[i][c] == obj->leet[l][0])
-		{
-		  bool = 0;
-		  ++leet;
-		  break;
-		}
-	      ++l;
-	    }
-	  if (bool == 0)
-	    {
-	      bool = 1;
-	      break;
-	    }
-	  ++c;
-	}
-      ++i;
+      leet += word->leet_status;
+      word = word->next;
     }
+  leet += word->leet_status;  
   no_leet = obj->nb_words - leet;
   perte = 0;
   for(i=obj->min-1; i<obj->max; i++)

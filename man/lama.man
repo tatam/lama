@@ -5,7 +5,7 @@
 \" Login   <tatam@protonmail.com>
 \" 
 \" Started on  Fri Oct 14 21:03:12 2016 Tatam
-\" Last update Sat Nov 18 11:19:08 2017 Tatam
+\" Last update Sun Dec 17 13:13:26 2017 Tatam
 \"
 .TH man 1 "18 Nov 2017" "1.0" "lama man page"
 .SH NAME
@@ -44,7 +44,7 @@ Keep in mind that the Lama generates a simple password list and not complex, thi
     Print password with the first letter capitalized of each words if it is a letter.
 
 .BR -L
-    Print password with leet speak transformation. The leet speak configuration can be set at /etc/lama/leet.lst. This option significantly slows the generation.
+    Print password with leet speak transformation. The leet speak configuration can be set at /etc/lama/leet.lst.
     
 .BR -S
     Add specials characters to the words given list. The specials list characters can be edit at /etc/lama/special.lst.

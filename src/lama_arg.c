@@ -5,7 +5,7 @@
 ** Login   <tatam@protonmail.com>
 ** 
 ** Started on  Wed Sep 28 09:08:08 2016 Tatam
-** Last update Sat Nov 18 11:55:12 2017 Tatam
+** Last update Sat Dec 16 13:27:16 2017 Tatam
 */
 #include "lama.h"
 
@@ -173,6 +173,7 @@ t_obj	*check_arg(int argc, char **argv)
   if (obj->min < 1 || obj->max < 1 || obj->min > 9 || obj->max > 9 || obj->min > obj->max)
     integer_error(argv);
   obj->options = get_opt(argv);
+  obj->leet = get_leet();
   obj->res = '0';
   while (obj->options[i])
     {
@@ -183,10 +184,7 @@ t_obj	*check_arg(int argc, char **argv)
       else if (obj->options[i] == 'C')
 	obj->pt_function[++o] = &print_all_maj;
       else if (obj->options[i] == 'L')
-	{
 	  obj->pt_function[++o] = &print_leet;
-	  obj->leet = get_leet();
-	}
       else if (obj->options[i] == 'y')
 	obj->res = 'y';
       else if (obj->options[i] != 'S' &&
