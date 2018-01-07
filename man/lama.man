@@ -5,7 +5,7 @@
 \" Login   <tatam@protonmail.com>
 \" 
 \" Started on  Fri Oct 14 21:03:12 2016 Tatam
-\" Last update Sun Dec 17 13:13:26 2017 Tatam
+\" Last update Sun Jan  7 10:56:44 2018 Tatam
 \"
 .TH man 1 "18 Nov 2017" "1.0" "lama man page"
 .SH NAME
@@ -26,10 +26,10 @@ Keep in mind that the Lama generates a simple password list and not complex, thi
     File containing all the personal words of the target.
 
 .BR <min>
-    Minimum number of output word (1-9).
+    Minimum interval number of output word (1-9).
 
 .BR <max>
-    Maximum number of output word (1-9).
+    Maximum interval number of output word (1-9).
 
 .BR -h
     Display output informations as Human readable format. Informations will displayed on STDERR. The output size of the dictionary is approximate.
@@ -47,10 +47,10 @@ Keep in mind that the Lama generates a simple password list and not complex, thi
     Print password with leet speak transformation. The leet speak configuration can be set at /etc/lama/leet.lst.
     
 .BR -S
-    Add specials characters to the words given list. The specials list characters can be edit at /etc/lama/special.lst.
+    Add specials characters to the words given list. The specials list characters can be edit at /etc/lama/special.lst. Note that this option directly adds a set of words to the initial list. Therefore, to get a password of type "alice_bob" where the "_" is part of -S, it is necessary to have an interval of 3.
 
 .BR -N
-    Add numeric sequences to the words given list. The numeric list characters can be edit at /etc/lama/numeric.lst.
+    Add numeric sequences to the words given list. The numeric list characters can be edit at /etc/lama/numeric.lst. Note that this option directly adds a set of words to the initial list. Therefore, to get a password of type "alicebob1234" where the "1234" is part of -N, it is necessary to have an interval of 3.
 
 .BR -y
     Force the answer to 'y' (yes) before the passwords generation. Be carfull, lama will generate passwords even if there is not enough space on your disk.
