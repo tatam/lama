@@ -5,7 +5,7 @@
 ** Login   <tatam@protonmail.com>
 ** 
 ** Started on  Wed Sep 28 09:08:08 2016 Tatam
-** Last update Sat Dec 16 13:27:16 2017 Tatam
+** Last update Sun Jan  7 11:11:33 2018 Tatam
 */
 #include "lama.h"
 
@@ -197,6 +197,11 @@ t_obj	*check_arg(int argc, char **argv)
       i++;
     }
   obj->pt_function[++o] = NULL;
+  if (obj->pt_function[0] == NULL)
+    {
+      fprintf(stderr, "%s: No display options specified.\n", argv[0]);
+      usage(argv);
+    }
 
   return(obj);
 }
