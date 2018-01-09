@@ -3,6 +3,7 @@ The purpose of this file is to give a non exaustive list of the information to b
 ## Informations
 	- Actual year
 	- Years - X
+	- Month - X (Sometime, passwords are mades with month number when it must be change each mouth)
 	- For (target, spouse-target, children-target, pets-target, etc.)
 	  - Name
 	  - First name
