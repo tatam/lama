@@ -5,7 +5,7 @@
 ** Login   <tatam@protonmail.com>
 ** 
 ** Started on  Wed Sep 28 09:08:08 2016 Tatam
-** Last update Sun Jan  7 11:11:33 2018 Tatam
+** Last update Sat Jan 13 10:53:00 2018 Tatam
 */
 #include "lama.h"
 
@@ -156,6 +156,27 @@ char	**get_leet()
   return(leet);
 }
 
+int	check_file(char *file_name)
+{
+  FILE	*file;
+  char	word[SIZEMAX];
+  int	i;
+
+  i = 0;
+  file = safe_ropen(file_name);
+  while (fgets(word, SIZEMAX, file) != NULL)
+    ++i;
+  fclose(file);
+  if (i == 0)
+   {
+      fprintf(stderr, "Error:\n");
+      fprintf(stderr, "\tFile %s is empty.\n\n", file_name);
+      return(1);
+    }
+  
+  return(0);
+}
+
 t_obj	*check_arg(int argc, char **argv)
 {
   t_obj	*obj;
@@ -165,6 +186,8 @@ t_obj	*check_arg(int argc, char **argv)
   i = 0;
   o = -1;
   if (argc < 5)
+    usage(argv);
+  if (check_file(argv[3]) != 0)
     usage(argv);
   obj = safe_malloc(sizeof(t_obj) + 1);
   obj->pt_function = safe_malloc(1024);
