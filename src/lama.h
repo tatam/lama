@@ -5,7 +5,7 @@
 ** Login   <tatam@protonmail.com>
 ** 
 ** Started on  Wed Sep 28 08:47:14 2016 Tatam
-** Last update Sun Dec 17 13:20:57 2017 Tatam
+** Last update Sun Jan 14 11:10:08 2018 Tatam
 */
 // Includes
 #include <stdlib.h>
@@ -24,6 +24,7 @@ typedef struct t_wd t_wd;
 struct	t_wd
 {
   t_wd	*next;
+  t_wd	*alias;
   char	*simple;
   char	*first_maj;
   char	*leet;
@@ -83,6 +84,7 @@ struct	t_len
 };
 
 // Prototypes
+char	**split_pipe(char *word);
 char	*human_nb_convert(long nb);
 char	*human_len_convert(long nb);
 t_obj   *check_arg(int argc, char **argv);

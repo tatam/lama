@@ -5,7 +5,7 @@
 ## Login   <tatam@protonmail.com>
 ## 
 ## Started on  Wed Sep 28 08:37:33 2016 Tatam
-## Last update Wed May 24 09:56:43 2017 Tatam
+## Last update Sun Jan 14 11:03:25 2018 Tatam
 ##
 CC =	gcc
 NAME =	lama
@@ -20,7 +20,8 @@ SRC =	src/main.c \
 	src/lama_count.c \
 	src/lama_len.c \
 	src/lama_convert.c \
-	src/lama_alter.c
+	src/lama_alter.c \
+	src/lama_split.c
 
 BIN_D	= /usr/bin
 MAN_D	= /usr/share/man/man1

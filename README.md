@@ -2,7 +2,7 @@
 _Lama, the application that does not mache these words._
 
 ## Description
-Lama is a tool for mixing a word list.
+Lama is a GNU Linux tool for mixing a word list.
 The  goal is to obtain a custom password dictionary to a particular target, whether physical or moral.
 
 It is therefore important that the words in this list correspond to the target.
