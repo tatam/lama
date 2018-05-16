@@ -5,7 +5,7 @@
 ** Login   <tatam@protonmail.com>
 ** 
 ** Started on  Mon Oct  3 09:45:07 2016 Tatam
-** Last update Thu Jan 18 21:26:03 2018 Tatam
+** Last update Wed May 16 20:34:03 2018 Tatam
 */
 #include "lama.h"
 
@@ -71,7 +71,6 @@ void	rwhile(int curr_while, t_obj *obj)
   int	bool;
 
   bool = 0;
-  //  while (obj->pt_words[curr_while]->next != NULL && bool == 0)
   while ( (obj->pt_words[curr_while]->next != NULL ||
 	   obj->pt_words[curr_while]->alias != NULL) && bool == 0)
     {
@@ -80,7 +79,7 @@ void	rwhile(int curr_while, t_obj *obj)
 	  obj->pt_words[curr_while+1] = obj->pt_words[curr_while]->next;
 	  rwhile(curr_while+1, obj);
 	  if (last_alias(obj->pt_words[curr_while]->next) == obj->pt_words[curr_while+1] &&
-	      obj->pt_words[curr_while]->alias == NULL) // WORK
+	      obj->pt_words[curr_while]->alias == NULL)
 	    bool = 1;
 	  else
 	    obj->pt_words[curr_while] = move_word(obj->pt_words[curr_while]);

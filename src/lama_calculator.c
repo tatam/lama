@@ -5,7 +5,7 @@
 ** Login   <tatam@protonmail.com>
 ** 
 ** Started on  Sat Nov 11 21:19:21 2017 Tatam
-** Last update Sat Nov 18 10:53:12 2017 Tatam
+** Last update Wed May 16 20:31:07 2018 Tatam
 */
 #include "lama.h"
 
@@ -68,8 +68,12 @@ int	calcul_word(char *soft, t_obj *obj)
   int	i;
 
   i = 0;
-  num = count_init(obj);
-  len = len_init(obj);
+  num = safe_malloc(sizeof(t_num) + 1);
+  len = safe_malloc(sizeof(t_len) + 1);
+  num->nb_total = 0;
+  len->len_total = 0;
+  count_simple(obj, num, len);
+  
   while (obj->options[i])
     {
       if (obj->options[i] == 'n')
@@ -148,6 +152,6 @@ int	calcul_word(char *soft, t_obj *obj)
     }
   if (buff[0] == 'n')
     return(1);
-  
+
   return(0);
 }

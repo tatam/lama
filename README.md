@@ -1,5 +1,5 @@
 # lama
-_Lama, the application that does not mache these words._
+_Lama, the application that does not mince words._
 
 ## Description
 Lama is a GNU Linux tool for mixing a word list.

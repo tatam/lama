@@ -5,9 +5,9 @@
 \" Login   <tatam@protonmail.com>
 \" 
 \" Started on  Fri Oct 14 21:03:12 2016 Tatam
-\" Last update Sun Jan  7 10:56:44 2018 Tatam
+\" Last update Wed May 16 21:05:10 2018 Tatam
 \"
-.TH man 1 "18 Nov 2017" "1.0" "lama man page"
+.TH man 1 "Mai 2018" "1.1" "lama man page"
 .SH NAME
 lama \- mix a given word list to generate password dictionnary
 .SH SYNOPSIS
@@ -23,13 +23,19 @@ Keep in mind that the Lama generates a simple password list and not complex, thi
 .SH OPTIONS
 
 .BR file 
-    File containing all the personal words of the target.
+    File containing all the personal words of the target. That is possible to make alias or synonymous on each word by separing them with a pipe character ("|"). For example, Alice have a nickname which is Lili. It is quite unlikey that "alice" and "lili" appear in the same password.
+    
+Here, a quike list example:
+    alice|lili
+    bobo
+    42
+    september|09|9
 
 .BR <min>
     Minimum interval number of output word (1-9).
 
 .BR <max>
-    Maximum interval number of output word (1-9).
+    Maximum interval number of output word (1-9). It is not advisable/useful to make the max greater than 5. Indeed, few people make a password with more than 5 word combinations. Furthermore, the generation can be strongly slowed beyond 5.
 
 .BR -h
     Display output informations as Human readable format. Informations will displayed on STDERR. The output size of the dictionary is approximate.

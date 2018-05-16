@@ -5,7 +5,7 @@
 ** Login   <tatam@protonmail.com>
 ** 
 ** Started on  Wed Sep 28 08:38:46 2016 Tatam
-** Last update Tue Jan 16 22:10:44 2018 Tatam
+** Last update Wed Apr 11 21:37:04 2018 Tatam
 */
 #include "lama.h"
 
@@ -131,45 +131,6 @@ t_lst	*init_list(char **words, t_obj *obj)
   return(list);
 }
 
-// RM THIS
-void	debug(t_lst *list)
-{
-  t_wd	*w;
-  int	bool;
-
-  bool = 0;
-  w = list->first;
-  while (w->next != NULL || w->alias != NULL)
-    {
-      if (w->alias == NULL)
-	fprintf(stderr, "%s", w->simple);
-      else
-	{
-	  bool = 1;
-	  while (w->alias != NULL)
-	    {
-	      fprintf(stderr, "%s ", w->simple);
-	      w = w->alias;
-	    }
-	  fprintf(stderr, "%s ", w->simple);	  
-	}
-      fprintf(stderr, "\n");
-      if (w->next != NULL)
-	{
-	  bool = 0;
-	  w = w->next;
-	}
-    }
-  if (bool == 0)
-    fprintf(stderr, "%s\n", w->simple);
-
-  if (w->next == NULL)
-    fprintf(stderr, "[x] (%s)->next == NULL\n", w->simple);
-  if (w->alias == NULL)
-    fprintf(stderr, "[x] (%s)->alias == NULL\n", w->simple);
-  fprintf(stderr, "-----------------------------------\n");
-}
-
 t_lst	*get_words_list(char *file_name, t_obj *obj)
 {
   t_lst	*list;
@@ -223,7 +184,11 @@ t_lst	*get_words_list(char *file_name, t_obj *obj)
 	}
       ++i;
     }
-  //  debug(list); // DEBUG, RM THIS
+  if (obj->max > obj->nb_words)
+    {
+      fprintf(stderr, "Interval must be greater than line's number in initial list.\n\n");
+      exit(EXIT_FAILURE);
+    }
 
   return(list);
 }

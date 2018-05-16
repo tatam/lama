@@ -5,7 +5,7 @@
 ** Login   <tatam@protonmail.com>
 ** 
 ** Started on  Sat Nov 11 21:19:21 2017 Tatam
-** Last update Sat Nov 18 11:57:17 2017 Tatam
+** Last update Sat Apr  7 20:46:18 2018 Tatam
 */
 #include "lama.h"
 
@@ -27,7 +27,7 @@ char	*human_nb_convert(long nb)
       ++len;
     }
   wlen = len;
-  if (len > 3)
+  if (len >= 3)
     wlen += len / 3;
   if (len % 3 == 0)
     --wlen;

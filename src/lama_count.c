@@ -5,132 +5,145 @@
 ** Login   <tatam@protonmail.com>
 ** 
 ** Started on  Sat Nov 11 21:19:21 2017 Tatam
-** Last update Sun Dec 17 11:41:11 2017 Tatam
+** Last update Wed May 16 20:29:25 2018 Tatam
 */
 #include "lama.h"
 
-long	count_simple(t_obj *obj)
+long	facto(int nb)
 {
-  long	total;
-  long	inter;
+  if (nb == 1)
+    return(nb);
+  return(nb * facto(nb-1));
+}
+
+int	distri(int *array_coef, int *array_words, int nb_words, int p, int q)
+{
+  int	total;
   int	i;
   int	j;
 
   total = 0;
-  for(i=obj->min-1; i<obj->max; i++)
+  for (i=1; i<=nb_words; i++)
     {
-      inter = 1;
-      for(j=0; j<=i; j++)
-	  inter *= (obj->nb_words - j);
-      total += inter;
+      for (j=0; j<=i; j++)
+	array_coef[i-j] += array_words[i] * array_coef[i-j-1];
     }
-
+  for (i=p; i<=q; i++)
+    {
+      if (i <= 0)
+	total += 1;
+      else
+	total += facto(i) * array_coef[i];
+    }
+    
   return(total);
 }
 
-long	count_first_maj(t_obj *obj, t_num *num)
+void	count_simple(t_obj *obj, t_num *num, t_len *len)
 {
-  t_wd	*word;
-  float	percent;
-  float	inter;
-  float	reste;
-  long	total;
-  int	maj;
+  int	*array_alias;
+  int	*array_coef;
+  int	*array_len;
+  int	total;
+  int	size;
+  int	tmp;
+  int	sum;
+  int	i;
+  int	j;
 
-  maj = 0;
-  word = safe_malloc(sizeof(t_wd*) + 1);
-  word = obj->list->first;
-  while (word->next != NULL)
-    {
-      maj += word->first_maj_status;
-      word = word->next;
-    }
-  maj += word->first_maj_status;  
-  percent = (float)maj * 100.0 / (float)obj->nb_words;
-  inter = num->nb_simple * percent / 100;
-  total = inter;
-  reste = inter - total;
-  if (reste >= 0.5)
-    ++total; // Is this line work ?
+  total = 0;
+  array_alias = init_array_alias_per_word(obj);
+  array_coef = init_array_coef(obj);
+  array_len = init_array_len_simple(obj);
+  total = distri(array_coef, array_alias, obj->nb_words, obj->min, obj->max);
   
-  return(total);
+  size = 0;
+  for (i=1; i<=obj->nb_words; i++)
+    {
+      tmp = array_alias[i];
+      array_alias[i] = 0;
+      free(array_coef);
+      array_coef = init_array_coef(obj);
+      distri(array_coef, array_alias, obj->nb_words, obj->min, obj->max);
+      sum = 0;
+      for (j=obj->min; j<=obj->max; j++)
+	sum += facto(j) * array_coef[j-1];
+      array_alias[i] = tmp;
+      size += array_len[i] * sum;
+    }
+
+  num->nb_simple = total;
+  len->len_simple = size + total;
+  free(array_alias);
+  free(array_coef);
+}
+
+long    count_first_maj(t_obj *obj, t_num *num)
+{
+  int	*array_unmatch;
+  int	*array_alias;
+  int	*array_coef;
+  int	unmatch;
+  int	total;
+  int	tmp;
+  int	k;
+
+  unmatch = 0;
+  array_unmatch = init_array_unmatch_first_maj(obj);
+  array_alias = init_array_alias_per_word(obj);
+  for (k=1; k<=obj->nb_words; k++)
+    {
+      total = 0;
+      array_coef = init_array_coef(obj);
+      tmp = array_alias[k];
+      array_alias[k] = 0;
+      total = distri(array_coef, array_alias, obj->nb_words, obj->min-1, obj->max-1);
+      array_alias[k] = tmp;
+      unmatch += array_unmatch[k] * total;
+      free(array_coef);
+    }
+  
+  free(array_unmatch);
+  free(array_alias);
+  
+  return(num->nb_simple - unmatch);
 }
 
 long	count_all_maj(t_obj *obj, t_num *num)
 {
-  t_wd	*word;
-  long	perte;
-  long	inter;
-  long	total;
-  int	no_maj;
-  int	i;
-  int	j;
-  
-  no_maj = 0;  
-  word = safe_malloc(sizeof(t_wd*) + 1);
-  word = obj->list->first;
-  while (word->next != NULL)
-    {
-      if (word->first_maj_status == 0)
-	++no_maj;
-      word = word->next;
-    }
-  if (word->first_maj_status == 0)
-    ++no_maj;
-  perte = 0;
-  for(i=obj->min-1; i<obj->max; i++)
-    {
-      inter = 1;
-      for(j=0; j<=i; j++)
-	inter *= (no_maj - j);
-      perte += inter;
-    }
-  total = num->nb_simple - perte;
+  int	*array_unmatch;
+  int	*array_coef;
+  int	unmatch;
+  int	total;
 
-  return(total);
-}
+  total = 0;
+  unmatch = 0;
+  array_unmatch = init_array_unmatch_first_maj(obj);
+  array_coef = init_array_coef(obj);
+  unmatch = distri(array_coef, array_unmatch, obj->nb_words, obj->min, obj->max);
+  total += num->nb_simple - unmatch;
 
-long	count_leet(t_obj *obj, t_num *num)
-{
-  t_wd	*word;
-  long	perte;
-  long	inter;
-  long	total;
-  int	no_leet;
-  int	leet;
-  int	i;
-  int	j;
-
-  leet = 0;
-  word = safe_malloc(sizeof(t_wd*) + 1);
-  word = obj->list->first;
-  while (word->next != NULL)
-    {
-      leet += word->leet_status;
-      word = word->next;
-    }
-  leet += word->leet_status;  
-  no_leet = obj->nb_words - leet;
-  perte = 0;
-  for(i=obj->min-1; i<obj->max; i++)
-    {
-      inter = 1;
-      for(j=0; j<=i; j++)
-	inter *= (no_leet - j);
-      perte += inter;
-    }
-  total = num->nb_simple - perte;
+  free(array_unmatch);
+  free(array_coef);
   
   return(total);
 }
 
-t_num	*count_init(t_obj *obj)
+long    count_leet(t_obj *obj, t_num *num)
 {
-  t_num	*num;
+  int	*array_unmatch;
+  int	*array_coef;
+  int	unmatch;
+  int	total;
 
-  num = safe_malloc(sizeof(t_num) + 1);
-  num->nb_simple = count_simple(obj);
-  num->nb_total = 0;
-
-  return(num);
+  total = 0;
+  unmatch = 0;
+  array_unmatch = init_array_unmatch_leet(obj);
+  array_coef = init_array_coef(obj);  
+  unmatch = distri(array_coef, array_unmatch, obj->nb_words, obj->min, obj->max);
+  total += num->nb_simple - unmatch;
+  free(array_unmatch);
+  free(array_coef);
+  
+  return(total);
 }

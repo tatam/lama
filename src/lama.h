@@ -5,7 +5,7 @@
 ** Login   <tatam@protonmail.com>
 ** 
 ** Started on  Wed Sep 28 08:47:14 2016 Tatam
-** Last update Sun Jan 14 11:10:08 2018 Tatam
+** Last update Wed May 16 20:33:02 2018 Tatam
 */
 // Includes
 #include <stdlib.h>
@@ -87,9 +87,13 @@ struct	t_len
 char	**split_pipe(char *word);
 char	*human_nb_convert(long nb);
 char	*human_len_convert(long nb);
+int	*init_array_coef(t_obj *obj);
+int	*init_array_alias_per_word(t_obj *obj);
+int	*init_array_unmatch_first_maj(t_obj *obj);
+int	*init_array_unmatch_leet(t_obj *obj);
+int	*init_array_len_simple(t_obj *obj);
+int	*init_array_len_first_maj(t_obj *obj);
 t_obj   *check_arg(int argc, char **argv);
-t_num	*count_init(t_obj *obj);
-t_len	*len_init(t_obj *obj);
 t_lst	*get_words_list(char *file_name, t_obj *obj);
 FILE    *safe_ropen(char *file_name);
 void	*safe_malloc(int value);
@@ -98,7 +102,7 @@ void    print_simple(t_obj *obj);
 void    print_first_maj(t_obj *obj);
 void    print_all_maj(t_obj *obj);
 void    print_leet(t_obj *obj);
-long	count_simple(t_obj *obj);
+void	count_simple(t_obj *obj, t_num *num, t_len *len);
 long	count_first_maj(t_obj *obj, t_num *num);
 long	count_all_maj(t_obj *obj, t_num *num);
 long	count_leet(t_obj *obj, t_num *num);
