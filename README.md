@@ -2,16 +2,16 @@
 _Lama, the application that does not mince words._
 
 ## Description
-Lama is a GNU Linux tool for mixing a word list.
+Lama is a GNU Linux tool to generate a word list.
 The  goal is to obtain a custom password dictionary to a particular target, whether physical or moral.
 
-It is therefore important that the words in this list correspond to the target.
+It is therefore important that words in this list correspond to the target.
 
-Keep in mind that the Lama generates a simple password list and not complex, this goal is to be fast and targeted rather than slow and exostif.
+Keep in mind that Lama generates a simple password list and not complex, the goal is to be fast and targeted rather than slow and exhaustive.
 
 ## Compilation
 ### Install
-Note that the make install must be run as **root**, because the binary was copy to **/bin** and configurations file into **/etc/lama**.
+Note that the make install must be run as **root**, because the binary was copyed to **/bin** and configurations files to **/etc/lama**.
 
 `make`
 
@@ -26,7 +26,7 @@ or
 `make re`
 
 ### uninstall
-Note that the make uninstall must be run as **root**, because the binary was remove from **/bin** and configurations file from **/etc/lama**.
+Note that the make uninstall must be run as **root**, because the binary was removed from **/bin** and configurations files from **/etc/lama**.
 
 `make uninstall`
 
@@ -40,8 +40,8 @@ or
 
 
 ## Utilisation
-First, you must create a word list with personnal infomations about the target. Then you can use **lama** to mix your given work list:
+First, you must create a words list with personnal infomations about the target. Then, you can use **lama** to mix your given words list:
 
 `lama 1 4 /tmp/list -ncCyh > /tmp/dico`
 
-For more detail, see `man lama`
+For more details, see `man lama`

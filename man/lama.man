@@ -5,7 +5,7 @@
 \" Login   <tatam@protonmail.com>
 \" 
 \" Started on  Fri Oct 14 21:03:12 2016 Tatam
-\" Last update Wed May 16 21:05:10 2018 Tatam
+\" Last update Wed May 23 21:48:27 2018 Tatam
 \"
 .TH man 1 "Mai 2018" "1.1" "lama man page"
 .SH NAME
@@ -19,11 +19,11 @@ The goal is to obtain a custom password dictionary to a particular target, wheth
 
 It is therefore important that the words in this list correspond to the target.
 
-Keep in mind that the Lama generates a simple password list and not complex, this goal is to be fast and targeted rather than slow and exostif.
+Keep in mind that the Lama generates a simple passwords list and not complex, the goal is to be fast and targeted rather than slow and exhaustive.
 .SH OPTIONS
 
 .BR file 
-    File containing all the personal words of the target. That is possible to make alias or synonymous on each word by separing them with a pipe character ("|"). For example, Alice have a nickname which is Lili. It is quite unlikey that "alice" and "lili" appear in the same password.
+    File containing all the personal words of the target. This is possible to make alias or synonymous on each words by separing them with a pipe character ("|"). For example, Alice have a nickname which is Lili. It is quite unlikey that "alice" and "lili" appear in the same password.
     
 Here, a quike list example:
     alice|lili
@@ -47,7 +47,7 @@ Here, a quike list example:
     Print password with the first letter capitalized if it is a letter.
 
 .BR -C
-    Print password with the first letter capitalized of each words if it is a letter.
+    Print password with the first letter capitalized for each words if it is a letter.
 
 .BR -L
     Print password with leet speak transformation. The leet speak configuration can be set at /etc/lama/leet.lst.
@@ -59,7 +59,7 @@ Here, a quike list example:
     Add numeric sequences to the words given list. The numeric list characters can be edit at /etc/lama/numeric.lst. Note that this option directly adds a set of words to the initial list. Therefore, to get a password of type "alicebob1234" where the "1234" is part of -N, it is necessary to have an interval of 3.
 
 .BR -y
-    Force the answer to 'y' (yes) before the passwords generation. Be carfull, lama will generate passwords even if there is not enough space on your disk.
+    Force the answer to 'y' (yes) before the passwords generation. Be carful, lama will generate passwords even if there is not enough space on your disk.
 
 .SH EXAMPLES
     lama 1 4 wordlist.lst -n
@@ -67,8 +67,15 @@ Here, a quike list example:
     lama 2 5 wordlist.lst -n -c -C > dictionnary.lst
     lama 1 2 wordlist.lst -L > dictionnary.lst
     lama 1 4 wordlist.lst -nLSh > dictionnary.lst
+    lama 1 4 wordlist.lst -ncCLShy | john /tmp/unshadow --stdin
 
 .SH BUGS
 When -c and -C options are used in the same time, this creates duplicates passwords on the first generation interval (the min value). This bug is assumed because to solve it would slow down the generation considerably.
+.SH THANKS
+Thanks to ReDiX, for his help and support since the beginning of the project.
+
+Thanks to LOU16, from les-mathematiques.net, for contributing to the development of all the mathematical formulas intended to predict the number of words generated.
+
+Thanks to Dorian, for helping me fix many spelling mistakes.
 .SH AUTHOR
 Tatam (tatam@protonmail.com)

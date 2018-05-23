@@ -1,5 +1,5 @@
 # LIST
-The purpose of this file is to give a non exaustive list of the information to be placed in the Lama input file. It is noted that it is never necessary to put all of this information on a given target. It is necessary to know how to sort between what the target could have put in his password or not.
+The purpose of this file is to give a non exhaustive list of the information to be placed in the Lama input file. It is noted that it is never necessary to put all of this informations for a given target. It is necessary to know how to sort between what the target could have put in his password or not.
 ## Informations
 	- Actual year
 	- Years - X
@@ -28,6 +28,7 @@ The purpose of this file is to give a non exaustive list of the information to b
 	- Departement
 	- Region
 	- Phone number (home phone / mobile)
+	- Hobby / Activity (eg. ski, surf, bike, moto etc.)
 	- Work
 	  - Job name
 	  - Work places
@@ -56,35 +57,25 @@ For this example, the target is named Alice Rivest. She was born on May 6, 1947 
 
 She has no children or animals.
 
-His nickname is Lili.
+Her nickname is Lili.
 
 She works for the MIT.
 
-The goal here, is to find the password of his company mailbox.
+The goal is to find the password of her company mailbox.
 ### List
 Ignore the "-":
 
-- 2017
-- 2016
-- 2015
-- 2014
-- 2013
-- alice
+- 2017|2016|2015|2014|2013
+- alice|lili
 - rivesta
-- lili
 - a
 - r
-- 6
-- 06
-- may
-- 5
-- 05
-- 1947
-- 47
+- 6|06|may
+- 5|05
+- 1947|47
 - schenectady
 - us
-- nyc
-- new-york
+- nyc|new-york
 - new
 - york
 - united
@@ -95,14 +86,10 @@ Ignore the "-":
 - 65508
 - 0964570
 - bob
-- 1977
-- 77
+- 1977|77
 - mit
 - cambridge
 - massachusetts
 - mens
 - manus
-- mail
-- e-mail
-- email
-- mailbox
+- mail|e-mail|email|mailbox
