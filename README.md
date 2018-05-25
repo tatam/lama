@@ -40,6 +40,7 @@ or
 
 
 ## Utilisation
+![gif](https://i.imgur.com/VpunrAc.gif)
 First, you must create a words list with personnal infomations about the target. Then, you can use **lama** to mix your given words list:
 
 `lama 1 4 /tmp/list -ncCyh > /tmp/dico`
