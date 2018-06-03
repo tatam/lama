@@ -5,7 +5,7 @@
 \" Login   <tatam@protonmail.com>
 \" 
 \" Started on  Fri Oct 14 21:03:12 2016 Tatam
-\" Last update Wed May 23 21:48:27 2018 Tatam
+\" Last update Sun Jun  3 15:51:52 2018 Tatam
 \"
 .TH man 1 "Mai 2018" "1.1" "lama man page"
 .SH NAME
@@ -62,12 +62,26 @@ Here, a quike list example:
     Force the answer to 'y' (yes) before the passwords generation. Be carful, lama will generate passwords even if there is not enough space on your disk.
 
 .SH EXAMPLES
-    lama 1 4 wordlist.lst -n
-    lama 2 2 wordlist.lst -nh > dictionnary.lst
-    lama 2 5 wordlist.lst -n -c -C > dictionnary.lst
-    lama 1 2 wordlist.lst -L > dictionnary.lst
-    lama 1 4 wordlist.lst -nLSh > dictionnary.lst
-    lama 1 4 wordlist.lst -ncCLShy | john /tmp/unshadow --stdin
+# Display on stdin without transformation.
+  lama 1 4 wordlist.lst -n
+
+# Write into dictionnary.lst without transformation.
+  lama 2 2 wordlist.lst -nh > dictionnary.lst
+
+# Write into dictionnary.lst with first lettre capitalized or first letter capitalized for each words.
+  lama 2 5 wordlist.lst -n -c -C > dictionnary.lst
+
+# Write into dictionnary.lst with leet speak transformation.
+  lama 1 2 wordlist.lst -L > dictionnary.lst
+
+# Write into dictionnary.lst with, normal and leet speak transformation and add specials characters.
+  lama 1 4 wordlist.lst -nLSh > dictionnary.lst
+
+# Generation word list and directly crack with John The Ripper.
+  lama 1 4 wordlist.lst -ncCLShy | john /tmp/unshadow --stdin
+
+# Generation word list and sort it with pw-inspector. Usefull to generate a WPA/WPA2 passwords list.
+  lama 1 4 wordlist.lst -ncCLShy | pw-inspector -m 8 -M 63 > dictionnary.lst
 
 .SH BUGS
 When -c and -C options are used in the same time, this creates duplicates passwords on the first generation interval (the min value). This bug is assumed because to solve it would slow down the generation considerably.
