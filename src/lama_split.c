@@ -5,7 +5,7 @@
 ** Login   <tatam@protonmail.com>
 ** 
 ** Started on  Sun Jan 14 11:02:44 2018 Tatam
-** Last update Mon Sep 24 21:15:55 2018 Tatam
+** Last update Mon Sep 24 21:28:10 2018 Tatam
 */
 #include "lama.h"
 
@@ -78,7 +78,7 @@ char	**split_pipe(char *word)
 	}
     }
   words[i] = '\0';
-  
+
   if (words[0] && *words[0] != '\0')
     return(words);
   return(NULL);
