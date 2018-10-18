@@ -5,7 +5,7 @@
 ** Login   <tatam@protonmail.com>
 ** 
 ** Started on  Wed Sep 28 09:08:08 2016 Tatam
-** Last update Wed May 16 21:18:15 2018 Tatam
+** Last update Thu Oct 18 22:57:30 2018 Tatam
 */
 #include "lama.h"
 
@@ -95,6 +95,7 @@ char	*get_opt(char **argv)
 
   k = 0;
   i = 4;
+  nb_opt = 0;
   while (argv[i])
     {
       j = 0;
