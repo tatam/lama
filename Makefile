@@ -5,11 +5,12 @@
 ## Login   <tatam@protonmail.com>
 ## 
 ## Started on  Wed Sep 28 08:37:33 2016 Tatam
-## Last update Wed May 16 21:16:51 2018 Tatam
+## Last update Fri Oct 19 21:32:30 2018 Tatam
 ##
 CC =	gcc
 NAME =	lama
 MAN =	man/lama.man
+HEAD = 	src/lama.h
 SRC =	src/main.c \
 	src/lama_builtin.c \
 	src/lama_arg.c \
@@ -34,6 +35,9 @@ MKDIR	= /bin/mkdir
 RM	= /bin/rm -f
 CP	= /bin/cp
 USER	= `whoami`
+
+%.o:		%.c $(HEAD)
+		$(CC) $(CFLAGS) -c -o $@ $<
 
 $(NAME):	$(OBJ)
 		$(CC) $(OBJ) -o $(NAME) $(CFLAGS)
