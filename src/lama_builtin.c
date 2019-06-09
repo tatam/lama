@@ -36,3 +36,23 @@ void	*safe_malloc(int value)
 
   return(thing);
 }
+
+int	get_L3_cache()
+{
+  FILE	*fd;
+  char	name1[256];
+  char	name2[256];
+  char	delimiter[256];
+  char	value[256];
+
+  fd = safe_ropen("/proc/cpuinfo");
+  while (!feof(fd))
+    {
+      fscanf(fd, "%s %s %s %s", name1, name2, delimiter, value);
+      if (strcmp(name1, "cache") == 0 && strcmp(name2, "size") == 0)
+	return(atoi(value) * 1024);
+    }
+
+  // return 4M by default
+  return(4194304);
+}

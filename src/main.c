@@ -12,7 +12,15 @@
 int	main(int argc, char **argv)
 {
   t_obj	*obj;
+  char	*buff;
+  int	buff_size;
   int	i;
+
+  // Get the L3 cache size and set the buffer
+  buff_size = get_L3_cache();
+  fprintf(stderr, "---%d---\n", buff_size); // DEBUG
+  buff = safe_malloc(buff_size);
+  setbuffer(stdout, buff, buff_size);
 
   obj = check_arg(argc, argv);
   obj->list = get_words_list(argv[3], obj);

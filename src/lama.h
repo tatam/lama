@@ -115,3 +115,4 @@ int	len_words(t_obj *obj);
 int	count_words(FILE *file);
 int	alter_first_maj(char *alter, char *simple);
 int	alter_leet(char *alter, char *simple, t_obj *obj);
+int	get_L3_cache();
