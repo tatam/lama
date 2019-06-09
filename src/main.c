@@ -18,7 +18,6 @@ int	main(int argc, char **argv)
 
   // Get the L3 cache size and set the buffer
   buff_size = get_L3_cache();
-  fprintf(stderr, "---%d---\n", buff_size); // DEBUG
   buff = safe_malloc(buff_size);
   setbuffer(stdout, buff, buff_size);
 
