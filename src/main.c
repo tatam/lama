@@ -38,6 +38,7 @@ int	main(int argc, char **argv)
     }
   else
     fprintf(stderr, "Canceling.\n");
+  free(buff);
   
   return(0);
 }

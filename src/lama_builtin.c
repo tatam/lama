@@ -50,8 +50,12 @@ int	get_L3_cache()
     {
       fscanf(fd, "%s %s %s %s", name1, name2, delimiter, value);
       if (strcmp(name1, "cache") == 0 && strcmp(name2, "size") == 0)
-	return(atoi(value) * 1024);
+	{
+	  fclose(fd);
+	  return(atoi(value) * 1024);
+	}
     }
+  fclose(fd);
 
   // return 4M by default
   return(4194304);
